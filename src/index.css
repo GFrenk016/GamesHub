@@ -15,12 +15,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+.custom {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
-a:hover {
+
+.custom:hover {
   color: #535bf2;
 }
 
@@ -30,6 +31,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {
