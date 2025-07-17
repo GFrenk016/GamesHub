@@ -1,4 +1,5 @@
 import GenresDropdown from './GenresDropdown';
+import Searchbar from './Searchbar';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
@@ -15,8 +16,8 @@ export default function Header() {
                     <li className="hover:text-gray-400 transition mx-4"><GenresDropdown /></li>
                     <li><Link to="/" className="hover:text-gray-400 transition mx-4">Home</Link></li>
                     <li><Link to="/games" className="hover:text-gray-400 transition mx-4">Giochi</Link></li>
-                    <li><Link to="/search" className="hover:text-gray-400 transition mx-4">Cerca</Link></li>
                     <li><Link to="/profile" className="hover:text-gray-400 transition mx-4">Profilo</Link></li>
+                    <li className="hover:text-gray-400 transition mx-4"><Searchbar /></li>
                 </ul>
             </div>
 

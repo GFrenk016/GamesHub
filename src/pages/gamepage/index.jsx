@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import useFetchSolution from "../../hook/useFetchSolution";
 
@@ -6,7 +7,11 @@ export default function GamePage() {
 
     const initialUrl = `https://api.rawg.io/api/games/${id}?key=a15a7b3ac6b541bdaf2e36ad79c7aeb4`;
 
-    const { data, error, loading } = useFetchSolution(initialUrl);
+    const { data, error, loading, updateUrl } = useFetchSolution(initialUrl);
+
+    useEffect(() => {
+        updateUrl(initialUrl);
+    }, [initialUrl, updateUrl]);
 
     return (
         <>

@@ -1,10 +1,15 @@
+import { useEffect } from 'react';
 import useFetchSolution from '../../hook/useFetchSolution';
 import CardGame from '../../components/Card';
 
 export default function Homepage() {
     const initialUrl = 'https://api.rawg.io/api/games?key=a15a7b3ac6b541bdaf2e36ad79c7aeb4&dates=2024-01-01,2024-12-31&page=1'
 
-    const { data, error, loading } = useFetchSolution(initialUrl);
+    const { data, error, loading, updateUrl } = useFetchSolution(initialUrl);
+
+    useEffect(() => {
+        updateUrl(initialUrl);
+    }, [initialUrl, updateUrl]);
 
     return (
         <div className='container mx-auto text-center mt-8'>
