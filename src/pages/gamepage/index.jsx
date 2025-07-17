@@ -1,31 +1,12 @@
 import { useParams } from "react-router";
-import { useState, useEffect } from "react";
+import useFetchSolution from "../../hook/useFetchSolution";
 
 export default function GamePage() {
     const { id } = useParams();
 
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-
     const initialUrl = `https://api.rawg.io/api/games/${id}?key=a15a7b3ac6b541bdaf2e36ad79c7aeb4`;
 
-    const load = async () => {
-        try {
-            const response = await fetch(initialUrl);
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-            const json = await response.json();
-            setData(json);
-        } catch (error) {
-            setError(error.message);
-            setData(null);
-        }
-    };
-
-    useEffect(() => {
-        load();
-    }, [id]);
+    const { data, error, loading } = useFetchSolution(initialUrl);
 
     return (
         <>
@@ -40,6 +21,8 @@ export default function GamePage() {
                 </div>
                 <div className="style-game-image my-4">
                     <img src={data && data.background_image} alt="" />
+                    {loading && <p>Loading...</p>}
+                    {error && <p>Errore: {error}</p>}
                 </div>
             </div>
         </>

@@ -1,29 +1,10 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router';
+import useFetchSolution from '../hook/useFetchSolution';
 
 export default function GenresDropdown() {
-    const [genres, setGenres] = useState(null);
-    const [error, setError] = useState(null);
-
     const initialUrl = 'https://api.rawg.io/api/genres?key=a15a7b3ac6b541bdaf2e36ad79c7aeb4'
 
-    const load = async () => {
-        try {
-            const response = await fetch(initialUrl);
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-            const json = await response.json();
-            setGenres(json);
-            } catch (error) {
-            setError(error.message);
-            setGenres(null);
-        }
-    }
-
-    useEffect(() => {
-        load();
-    }, []);
+    const { data: genres, error } = useFetchSolution(initialUrl);
 
     return (
         <>
