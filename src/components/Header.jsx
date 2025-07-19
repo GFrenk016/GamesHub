@@ -33,9 +33,9 @@ export default function Header() {
                         <>
                             <li className="hover:text-gray-400 transition mx-4">
                                 <details className="dropdown">
-                                    <summary>Account</summary>
+                                    <summary>{session?.user.user_metadata.username}</summary>
                                     <ul dir='rtl'>
-                                        <li><a href="#"> Impostazioni</a></li>
+                                        <li><Link to="/account" className="hover:text-gray-400 transition mx-4">Profilo </Link></li>
                                         <li><button onClick={signOut}>Logout</button></li>
                                     </ul>
                                 </details>
