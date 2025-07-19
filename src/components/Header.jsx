@@ -1,29 +1,20 @@
+import { useContext } from 'react';
 import GenresDropdown from './GenresDropdown';
 import Searchbar from './Searchbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase/supabase-client';
-import { useEffect, useState } from 'react';
+import SessionContext from '../context/SessionContext';
 
 export default function Header() {
-    const [session, setSession] = useState(null);
-
-    const getSession = async () => {
-        const { data, error } = await supabase.auth.getSession();
-        if (error) setSession(null);
-        console.log(data);
-        setSession(data);
-    };
+    const navigate = useNavigate();
+    const { session } = useContext(SessionContext);
 
     const signOut = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) console.log(error);
         alert ("Logout effettuato con successo");
-        getSession();
+        navigate("/");
     };
-
-    useEffect(() => {
-        getSession();
-    }, []);
 
     return (
     <nav className="bg-gray-900 text-white shadow custom fixed w-full z-50">
@@ -38,7 +29,7 @@ export default function Header() {
                     <li className="hover:text-gray-400 transition mx-4"><GenresDropdown /></li>
                     <li><Link to="/" className="hover:text-gray-400 transition mx-4">Home</Link></li>
                     <li><Link to="/games" className="hover:text-gray-400 transition mx-4">Giochi</Link></li>
-                    {!session ? (
+                    {session ? (
                         <>
                             <li className="hover:text-gray-400 transition mx-4">
                                 <details className="dropdown">
