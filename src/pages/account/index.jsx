@@ -1,10 +1,19 @@
 import { useState, useEffect, useContext } from "react";
 import { supabase } from "../../supabase/supabase-client";
 import SessionContext from "../../context/SessionContext";
+import FavoritesContext from "../../context/FavoritesContext";
+import { FaTrashAlt } from "react-icons/fa";
 import Avatar from "../../components/Avatar";
+
+const favoriteGameUI = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+}
 
 export default function AccountPage() {
     const { session } = useContext(SessionContext);
+    const { favorites, removeFavorite } = useContext(FavoritesContext);
 
     const [loading, setLoading] = useState(true);
     const [username, setUsername] = useState(null);
@@ -123,6 +132,25 @@ export default function AccountPage() {
                     </button>
                 </div>
             </form>
+
+            <h2>I tuoi giochi preferiti</h2>
+            {favorites.length === 0 ? (
+                <p>Non hai ancora aggiunto giochi preferiti.</p>
+            ) : (
+                <ul>
+                    {favorites.map((game) => (
+                        <li key={game.id} style={favoriteGameUI}>
+                            <div>
+                                <img width={50} height={50} src={game.background_image} alt="" />
+                                <p>{game.name}</p>
+                            </div>
+                            <button className="btn" onClick={() => removeFavorite(game.game_id)}>
+                                <FaTrashAlt />
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     )
 }
