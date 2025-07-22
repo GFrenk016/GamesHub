@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import useFetchSolution from "../../hook/useFetchSolution";
 import ToggleFavorite from "../../components/ToggleFavorite";
+import Chatbox from "../../components/Chatbox";
 
 export default function GamePage() {
     const { id } = useParams();
@@ -32,6 +33,9 @@ export default function GamePage() {
                     <img src={data && data.background_image} alt="" />
                     {loading && <p>Loading...</p>}
                     {error && <p>Errore: {error}</p>}
+                </div>
+                <div className="style-chatbox">
+                    <Chatbox data={data && data} />
                 </div>
             </div>
         </>
