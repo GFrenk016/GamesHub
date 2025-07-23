@@ -13,8 +13,8 @@ export default function Homepage() {
 
     return (
         <div className='container mx-auto text-center mt-8'>
-            <h1 className='text-2xl font-bold mb-4'>Benvenuto nella homepage!</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4'>
+            <h1 className='text-2xl font-bold mb-8'>Benvenuto nella homepage!</h1>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8'>
                 {error && <p>{error}</p>}
                 {data && data.results.map((game) => (
                     <CardGame key={game.id} game={game} />

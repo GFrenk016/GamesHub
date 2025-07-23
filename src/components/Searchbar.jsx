@@ -20,6 +20,7 @@ export default function Searchbar() {
         <form onSubmit={handleSearch}>
             <fieldset role="group">
                 <input
+                    className="p-2 border border-white rounded-md"
                     type="text"
                     name="search"
                     placeholder={ariaInvalid ? "Inserisci qualcosa" : "Cerca un gioco"}
@@ -27,7 +28,7 @@ export default function Searchbar() {
                     value={search}
                     aria-invalid={ariaInvalid}
                 />
-                <input type="submit" value="Cerca" />
+                <input className="hover:text-gray-400 transition mx-4 cursor-pointer" type="submit" value="Cerca" />
             </fieldset>
         </form>
     ); 

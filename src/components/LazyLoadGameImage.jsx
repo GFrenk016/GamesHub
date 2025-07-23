@@ -9,9 +9,10 @@ export default function LazyLoadGameImage({ image }) {
             effect="blur"
             width="100%"
             height="190px"
+            style={{objectFit: "cover"}}
             wrapperProps={{
                 style: {transitionDelay: "0.2s"},
             }}
-            />
+        />
     )
 } 
