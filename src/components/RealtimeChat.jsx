@@ -78,12 +78,12 @@ export default function RealtimeChat({ data }) {
             {error && <p>{error}</p>}
             {messages &&
                 messages.map((message) => (
-                    <article key={message.id}>
-                        <p>
+                    <article className="p-4" key={message.id}>
+                        <h2 className="text-2xl font-bold mb-2">
                             {message.profile_username} 
-                        </p>
-                        <small>{message.content}</small>
-                        <p>{dayjs().to(dayjs(message.created_at))}</p>
+                        </h2>
+                        <p className="text-base">{message.content}</p>
+                        <em>{dayjs().to(dayjs(message.created_at))}</em>
                     </article>
                 ))}
         </div>

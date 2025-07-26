@@ -64,38 +64,50 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="container mt-8">
-        <h1 className="text-2xl font-bold mb-4">Accedi</h1>
-        <form onSubmit={onSubmit} noValidate>
-            <label htmlFor="email">Email:</label>
-            <input
-            type="email"
-            id="email"
-            name="email"
-            value={formState.email}
-            onChange={setField("email")}
-            onBlur={onBlur("email")}
-            aria-invalid={isInvalid("email")}
-            required
-            />
-            {formErrors.email && <small>{formErrors.email}</small>}
+            <div className="max-w-md mx-auto px-6 py-10">
+                <h1 className="text-3xl font-bold text-white mb-6 text-center">Accedi</h1>
+                <form onSubmit={onSubmit} noValidate className="bg-gray-900 p-6 rounded-md shadow-md space-y-5">
+                    <div>
+                    <label htmlFor="email" className="block text-white font-medium mb-1">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formState.email}
+                        onChange={setField("email")}
+                        onBlur={onBlur("email")}
+                        aria-invalid={isInvalid("email")}
+                        required
+                        className="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    {formErrors.email && <small className="text-red-500">{formErrors.email}</small>}
+                    </div>
 
-            <label htmlFor="password">Password:</label>
-            <input
-            type="password"
-            id="password"
-            name="password"
-            value={formState.password}
-            onChange={setField("password")}
-            onBlur={onBlur("password")}
-            aria-invalid={isInvalid("password")}
-            required
-            />
-            {formErrors.password && <small>{formErrors.password}</small>}
+                    <div>
+                    <label htmlFor="password" className="block text-white font-medium mb-1">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={formState.password}
+                        onChange={setField("password")}
+                        onBlur={onBlur("password")}
+                        aria-invalid={isInvalid("password")}
+                        required
+                        className="w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    {formErrors.password && <small className="text-red-500">{formErrors.password}</small>}
+                    </div>
 
-            <br />
-            <button type="submit">Accedi</button>
-        </form>
-        </div>
+                    <div className="text-center">
+                    <button
+                        type="submit"
+                        className="bg-gray-500 hover:bg-gray-700 transition text-white py-2 px-4 rounded mt-2 cursor-pointer text-base"
+                    >
+                        Accedi
+                    </button>
+                    </div>
+                </form>
+            </div>
     );
 }

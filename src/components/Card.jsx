@@ -11,8 +11,9 @@ export default function CardGame({ game }) {
         <div className="card" key={game.id}>
             <LazyLoadGameImage image= {image} />
             <div className="flex flex-col gap-2 mt-5">
-                <h2 className="font-bold text-2xl text-white">{game.name}</h2>
-                <p className="text-lg">{genres}</p>
+                <h2 className={`font-bold ${
+                game.name.length > 35 ? "text-lg" : "text-2xl"} text-white`}>{game.name}</h2>
+                <p className="text-base">{genres}</p>
                 <div className="flex justify-between mt-2">
                     <p className="text-base">Rating: {game.rating}</p>
                     <p className="text-base">Data di uscita: {game.released}</p>

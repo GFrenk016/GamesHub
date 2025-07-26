@@ -21,17 +21,24 @@ export default function FavoritesProvider({ children }) {
     }, [session]);
 
     const addFavorites = async (game) => {
-        await supabase
-        .from("favorites")
-        .insert([
+        const userId = session?.user?.id;
+
+        const { error } = await supabase
+            .from("favorites")
+            .insert([
             {
-            user_id: session?.user.id,
-            game_id: game.id,
-            game_name: game.name,
-            game_image: game.background_image,
+                user_id: userId,
+                game_id: game.id,
+                game_name: game.name,
+                game_image: game.background_image,
+                game_slug: game.slug,
             },
-        ])
-        .select();
+            ])
+            .select();
+
+        if (error) {
+            console.error("Errore durante l'inserimento:", error.message);
+        }
     };
 
     const removeFavorite = async (gameId) => {
